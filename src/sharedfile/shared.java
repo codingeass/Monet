@@ -12,12 +12,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.*;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
@@ -54,7 +51,7 @@ public class shared extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTree1 = new javax.swing.JTree();
-        jButton1 = new javax.swing.JButton();
+        searchIp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -74,10 +71,10 @@ public class shared extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTree1);
 
-        jButton1.setText("Search");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        searchIp.setText("Search");
+        searchIp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                searchIpActionPerformed(evt);
             }
         });
 
@@ -94,7 +91,7 @@ public class shared extends javax.swing.JFrame {
                         .addGap(36, 36, 36)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(102, 102, 102)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(searchIp, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(91, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -108,7 +105,7 @@ public class shared extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
+                        .addComponent(searchIp)))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -217,7 +214,7 @@ class StreamGobbler
       System.out.println(""+e);
   }
 }
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void searchIpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchIpActionPerformed
 try{
     Runtime rt = Runtime.getRuntime();
     Process proc =rt.exec("arp -a");
@@ -256,8 +253,8 @@ try{
         Thread thread = new Thread(){
     public void run(){
         int j=0;
-       jButton1.setEnabled(false);
-       jButton1.setText("Searching");
+       searchIp.setEnabled(false);
+       searchIp.setText("Searching");
       while(j<k)
         {
             System.out.println(""+allip[j]);
@@ -267,8 +264,8 @@ try{
           //  Thread.currentThread().sleep(1000);
             j++;
         }
-      jButton1.setEnabled(true);
-      jButton1.setText("Search");
+      searchIp.setEnabled(true);
+      searchIp.setText("Search");
     }
   };
     thread.start();    
@@ -278,7 +275,7 @@ try{
 catch(Exception e){
     JOptionPane.showMessageDialog(null,"Error occurred or invalid Entry"+e);
 }        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_searchIpActionPerformed
 
     private void jTree1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTree1MouseClicked
 if(evt.getClickCount()==2)
@@ -342,9 +339,9 @@ operation="stop";
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTree jTree1;
+    private javax.swing.JButton searchIp;
     // End of variables declaration//GEN-END:variables
 }
