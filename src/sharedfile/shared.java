@@ -246,7 +246,6 @@ try{
             } 
             catch (IOException ioe)
             {
-                System.out.println("Error state 1");
                ioe.printStackTrace();  
             }
        final int k=i; 
@@ -255,6 +254,13 @@ try{
         int j=0;
        searchIp.setEnabled(false);
        searchIp.setText("Searching");
+       if(allip[0].equals("ARP"))
+       {
+           JOptionPane.showMessageDialog(null,"You are not Connected");
+           searchIp.setEnabled(true);
+           searchIp.setText("Search");
+           return;
+       }
       while(j<k)
         {
             System.out.println(""+allip[j]);
