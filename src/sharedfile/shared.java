@@ -6,9 +6,7 @@
 
 package sharedfile;
 
-import java.awt.Desktop;
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -39,6 +37,9 @@ public class shared extends javax.swing.JFrame {
         jTree1.setModel(new DefaultTreeModel(treeNode1));
         jScrollPane1.setViewportView(jTree1);
     }
+    /**
+     * issues : permission issue on file
+     */
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -291,15 +292,17 @@ if(evt.getClickCount()==2)
     
     String ip=(""+path.getPathComponent(1)).trim();
     String lastpath=(""+path.getLastPathComponent()).trim();
-    if(ip.equals(lastpath))
-    System.out.println(ip);
-    else
-        System.out.println(ip+"\\"+lastpath);
-    try {
-        Desktop.getDesktop().open(new File("\\\\"+ip+"\\"+lastpath));
-    } catch (IOException ex) {
-        Logger.getLogger(shared.class.getName()).log(Level.SEVERE, null, ex);
+    String location="\\\\"+ip;
+    if(!ip.equals(lastpath))
+    {
+        location+="\\"+lastpath;        
     }
+     Runtime rt = Runtime.getRuntime();
+     try{
+        Process proc =rt.exec("explorer "+location);
+     } catch (IOException ex) {
+        Logger.getLogger(shared.class.getName()).log(Level.SEVERE, null, ex);
+     }
 }
 // TODO add your handling code here:
     }//GEN-LAST:event_jTree1MouseClicked
