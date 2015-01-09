@@ -10,6 +10,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.concurrent.Callable;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.FutureTask;
+import java.util.concurrent.TimeUnit;
 import static java.util.concurrent.TimeUnit.SECONDS;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +24,7 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 /**
  *
- * @author Amandeep
+ * @author Amandeep Gupta
  */
 public class shared extends javax.swing.JFrame {
 
@@ -274,6 +279,7 @@ class StreamGobbler
       System.out.println(""+e);
   }
 }
+    int j=0;
     private void searchIpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchIpActionPerformed
 try{
     Runtime rt = Runtime.getRuntime();
@@ -311,7 +317,7 @@ try{
        final int k=i; 
         Thread thread = new Thread(){
     public void run(){
-        int j=0;
+        
        searchIp.setEnabled(false);
        searchIp.setText("Searching");
        if(allip[0].equals("ARP"))
@@ -324,7 +330,24 @@ try{
       while(j<k)
         {
             System.out.println(""+allip[j]);
-            netview(allip[j]);
+            
+            FutureTask<Void> task = new FutureTask<>(new Callable<Void>() {
+            @Override
+            public Void call() throws Exception {
+              netview(allip[j]);
+              return null;
+            }
+          });
+
+          Executor executor = Executors.newSingleThreadScheduledExecutor();
+          executor.execute(task);
+
+          try {
+            task.get(5, TimeUnit.SECONDS);
+          }
+          catch(Exception ex) {
+            System.out.println(""+ex);
+          }
             if(operation.equals("stop"))
                 break;
           //  Thread.currentThread().sleep(1000);
