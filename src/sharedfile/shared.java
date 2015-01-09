@@ -67,7 +67,7 @@ public class shared extends javax.swing.JFrame {
         jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         jFrame1.setTitle("About");
         jFrame1.setLocationByPlatform(true);
-        jFrame1.setMinimumSize(new java.awt.Dimension(414, 260));
+        jFrame1.setMinimumSize(new java.awt.Dimension(424, 285));
         jFrame1.setResizable(false);
 
         jTextArea1.setEditable(false);
@@ -76,7 +76,7 @@ public class shared extends javax.swing.JFrame {
         jTextArea1.setFont(new java.awt.Font("Monospaced", 1, 14)); // NOI18N
         jTextArea1.setForeground(new java.awt.Color(51, 51, 0));
         jTextArea1.setRows(5);
-        jTextArea1.setText("Monet is a project developed by \nAmandeep Gupta.\nThis app is licensed under the gnu gpl v2.0\nLicense and CDDL.\nWant to contribute in this project visit github:\n\"https://github.com/codingeass/Monet\"");
+        jTextArea1.setText("\t\t      Monet\n\t\t    Version 1.0 \nThis application helps in searching of shared\nfiles in network.\nThis app is licensed under the gnu gpl v2.0\nLicense and CDDL.\nWant to contribute in this project visit github:\n\"https://github.com/codingeass/Monet\"\nCopyright Amandeep Gupta.\n");
         jScrollPane2.setViewportView(jTextArea1);
 
         jButton8.setText("Close");
@@ -99,8 +99,8 @@ public class shared extends javax.swing.JFrame {
         jFrame1Layout.setVerticalGroup(
             jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jFrame1Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton8)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -432,6 +432,7 @@ jFrame1.setVisible(true);        // TODO add your handling code here:
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new shared().setVisible(true);
             }
